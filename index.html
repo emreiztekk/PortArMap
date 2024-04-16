@@ -9,7 +9,7 @@
     <script>
         AFRAME.registerComponent('cursor-listener', {
             init: function () {
-                this.el.addEventListener('click', function (evt) { 
+                this.el.addEventListener('click', function (evt) {
                     alert("clicked");
                 });
             }
@@ -26,10 +26,15 @@
     <a-scene id="scene" vr-mode-ui="enabled: false"
         arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;">
         <a-marker preset='hiro' cursor='rayOrigin: mouse'></a-marker>
-            <a-entity ><a-obj-model class="collidable" cursor-listener id="animated-marker" src="#crate-obj" position="0 -1.6 0" mtl="#crate-mtl" rotation="-90 0 0" scale="0.004 0.004 0.004" material="" obj-model=""></a-obj-model></a-entity> 
-           //onclick doesn't work
-            <a-entity  material=" src: url(box.png) " class="collidable" cursor- 
-          listener position="0 -1 0"></a-entity> 
+        <a-entity>
+            <a-image id="Uckuyular"
+                src="https://upload.wikimedia.org/wikipedia/commons/6/66/%C3%9C%C3%A7kuyular_Ferry_Terminal%2C_March_2021_%289%29.jpg"
+                onclick="window.location.href='https://www.izdeniz.com.tr/'" look-at="[gps-camera]" scale="5 5 5"
+                onclick="redirectToURL()" gps-entity-place="latitude: 38.405675209865336; longitude:27.06935935250486;"
+                position="0 2 0" clickhandler>
+            </a-image>
+        </a-entity>
+        <a-entity material=" src: https://upload.wikimedia.org/wikipedia/commons/6/66/%C3%9C%C3%A7kuyular_Ferry_Terminal%2C_March_2021_%289%29.jpg" class="collidable" cursor- listener position="0 -1 0"></a-entity>
         <a-entity clickhandler
             src="https://upload.wikimedia.org/wikipedia/commons/6/66/%C3%9C%C3%A7kuyular_Ferry_Terminal%2C_March_2021_%289%29.jpg"></a-entity>
         <!-- Uckuyular Üçkuyular 38.405675209865336, 27.06935935250486 -->
