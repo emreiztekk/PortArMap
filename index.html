@@ -5,7 +5,16 @@
     <meta charset="utf-8">
     <title>Ports</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://ar-js-org.github.io/AR.js/aframe/build/aframe-ar.js"></script>    
+    <script src="https://ar-js-org.github.io/AR.js/aframe/build/aframe-ar.js"></script>   
+    <script>
+        AFRAME.registerComponent('clicker', {
+            init: function() {
+                this.el.addEventListener('click', e => {
+                    alert('Box clicked!');
+                });
+            }
+        });
+        </script> 
 </head>
 
 <body style="margin : 0px; overflow: hidden;">
@@ -14,7 +23,7 @@
             <!-- 	  Goztepe Göztepe  	   38.399571991405416, 27.083436202065336 -->
             <a-image id="Goztepe" src="https://upload.wikimedia.org/wikipedia/commons/3/3f/G%C3%B6ztepe_pier.jpg" onclick="window.location.href='https://www.izdeniz.com.tr/'" 
                 look-at="[gps-camera]" scale="5 5 5"
-                gps-entity-place="latitude: 38.399571991405416; longitude: 27.083436202065336;" position="0 2 0"
+                gps-entity-place="latitude: 38.399571991405416; longitude: 27.083436202065336;" position="0 2 0" clicker
                 ></a-image>
 
             <a-text id="Goztepe-distance" look-at="[gps-camera]" color="white" scale="5 5 5"
@@ -25,7 +34,7 @@
             <a-image id="Pasaport"
                 src="https://upload.wikimedia.org/wikipedia/commons/5/55/Kantar_Karakolu%2C_Izmir.jpg" onclick="window.location.href='https://www.izdeniz.com.tr/'" 
                 look-at="[gps-camera]" scale="5 5 5"
-                gps-entity-place="latitude: 38.42892199253736; longitude: 27.13228407441726;" position="0 2 0"
+                gps-entity-place="latitude: 38.42892199253736; longitude: 27.13228407441726;" position="0 2 0" clicker
                 ></a-image>
             <!-- <a-text value="Pasaport" look-at="[gps-camera]" color="white" scale="5 5 5"
             gps-entity-place="latitude: 38.42892199253736; longitude: 27.13228407441726;" position="0 10 -1" ></a-text> -->
