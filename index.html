@@ -71,7 +71,7 @@ window.onload = () => {
                         ev.preventDefault();
 
                         const name = ev.target.getAttribute('name');
-
+                        alert(name);
                         const el = ev.detail.intersection && ev.detail.intersection.object.el;
 
                         if (el && el === ev.target) {
@@ -81,7 +81,7 @@ window.onload = () => {
                             label.innerText = name;
                             container.appendChild(label);
                             document.body.appendChild(container);
-
+                            alert("append name");
                             setTimeout(() => {
                                 container.parentElement.removeChild(container);
                             }, 1500);
