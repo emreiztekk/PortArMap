@@ -16,12 +16,12 @@
 <body style="margin : 0px; overflow: hidden;">
     <a-scene id="scene" vr-mode-ui="enabled: false"
         arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;">
- 
+  <a-entity clickhandler src="https://upload.wikimedia.org/wikipedia/commons/6/66/%C3%9C%C3%A7kuyular_Ferry_Terminal%2C_March_2021_%289%29.jpg"></a-entity>  
             <!-- Uckuyular Üçkuyular 38.405675209865336, 27.06935935250486 -->
             <a-image id="Uckuyular"
                 src="https://upload.wikimedia.org/wikipedia/commons/6/66/%C3%9C%C3%A7kuyular_Ferry_Terminal%2C_March_2021_%289%29.jpg" onclick="window.location.href='https://www.izdeniz.com.tr/'" 
                 look-at="[gps-camera]" scale="5 5 5" onclick="redirectToURL()" 
-                gps-entity-place="latitude: 38.405675209865336; longitude:27.06935935250486;" position="0 2 0" 
+                gps-entity-place="latitude: 38.405675209865336; longitude:27.06935935250486;" position="0 2 0" clickhandler
                 ></a-image>
  
              <a-text id="Uckuyular-distance" look-at="[gps-camera]" color="white" scale="5 5 5"
