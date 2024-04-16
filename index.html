@@ -21,9 +21,11 @@
         raycaster='near: 0; far: 50000'
         arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;'
         renderer='antialias: true; alpha: true'>
-            <a-camera gps-projected-camera='simulateLatitude: 51.049; simulateLongitude: -0.723' rotation-reader></a-camera>
+        <!-- <a-scene id="scene" vr-mode-ui="enabled: false"
+        arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;"> -->
+            <!-- <a-camera gps-projected-camera='simulateLatitude: 51.049; simulateLongitude: -0.723' rotation-reader></a-camera> -->
             <a-box gps-projected-entity-place='latitude: 38.405675209865336; longitude:27.06935935250486' color='red' scale='200 200 200' clicker></a-box>
-            <!-- <a-camera gps-camera rotation-reader></a-camera> -->
+            <a-camera gps-camera rotation-reader></a-camera>
             <a-image id="Uckuyular"
             src="https://upload.wikimedia.org/wikipedia/commons/6/66/%C3%9C%C3%A7kuyular_Ferry_Terminal%2C_March_2021_%289%29.jpg" 
             look-at="[gps-camera]" scale="5 5 5"
@@ -48,6 +50,15 @@
     <title>Ports</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://ar-js-org.github.io/AR.js/aframe/build/aframe-ar.js"></script>    
+       <script>
+        AFRAME.registerComponent('clicker', {
+            init: function() {
+                this.el.addEventListener('click', e => {
+                    alert('Box clicked!');
+                });
+            }
+        });
+        </script>
 </head>
 
 <body style="margin : 0px; overflow: hidden;">
