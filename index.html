@@ -59,6 +59,7 @@ window.onload = () => {
                     const icon = document.createElement('a-image');
                     icon.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude}`);
                     icon.setAttribute('name', place.name);
+                    alert(place.name);
                      icon.setAttribute('src', 'https://upload.wikimedia.org/wikipedia/commons/3/3f/G%C3%B6ztepe_pier.jpg');
 
                      icon.setAttribute('scale', '20, 20');
