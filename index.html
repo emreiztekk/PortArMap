@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html> 
     <head>
         <title>AR.js Click Places Example</title>
@@ -20,10 +20,7 @@
         cursor='rayOrigin: mouse'
         raycaster='near: 0; far: 50000'
         arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;'
-        renderer='antialias: true; alpha: true'>
-        <!-- <a-scene id="scene" vr-mode-ui="enabled: false"
-        arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;"> -->
-            <!-- <a-camera gps-projected-camera='simulateLatitude: 51.049; simulateLongitude: -0.723' rotation-reader></a-camera> -->
+        renderer='antialias: true; alpha: true'> 
             <a-box gps-projected-entity-place='latitude: 38.405675209865336; longitude:27.06935935250486' color='red' scale='200 200 200' clicker></a-box>
             <a-camera gps-camera rotation-reader></a-camera>
             <a-image id="Uckuyular"
@@ -34,14 +31,7 @@
             ></a-image>
         </a-scene>
     </body>
-</html>
-
-
-<!-- 
-
-
-
-
+</html> --> 
 <!DOCTYPE html>
 <html lang="tr">
 
@@ -69,7 +59,7 @@
             src="https://upload.wikimedia.org/wikipedia/commons/6/66/%C3%9C%C3%A7kuyular_Ferry_Terminal%2C_March_2021_%289%29.jpg" 
             look-at="[gps-camera]" scale="5 5 5"
             gps-entity-place="latitude: 38.405675209865336; longitude:27.06935935250486;" position="0 2 0"
-            data-link="https://example.com"
+            data-link="https://example.com" clicker
             ></a-image>
         <a-text id="Uckuyular-distance" look-at="[gps-camera]" color="white" scale="5 5 5"
             gps-entity-place="latitude: 38.405675209865336; longitude:27.06935935250486;" position="0 -19 1"
@@ -77,11 +67,11 @@
         <a-image id="Goztepe" src="https://upload.wikimedia.org/wikipedia/commons/3/3f/G%C3%B6ztepe_pier.jpg" 
             look-at="[gps-camera]" scale="5 5 5"
             gps-entity-place="latitude: 38.399571991405416; longitude: 27.083436202065336;" position="0 2 0"
-            data-link="https://example.com"
+            data-link="https://example.com" clicker
             ></a-image>
         <a-text id="Goztepe-distance" look-at="[gps-camera]" color="white" scale="5 5 5"
             gps-entity-place="latitude: 38.399571991405416; longitude: 27.083436202065336;" position="0 -19 1"
-            ></a-text>
+            clicker ></a-text>
  
 
         <a-entity id="linkHandler" cursor-listener></a-entity>
