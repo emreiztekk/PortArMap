@@ -5,30 +5,46 @@
     <meta charset="utf-8">
     <title>Ports</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://ar-js-org.github.io/AR.js/aframe/build/aframe-ar.js"></script>    
+    <script src="https://ar-js-org.github.io/AR.js/aframe/build/aframe-ar.js"></script>
+    <script>
+        AFRAME.registerComponent('cursor-listener', {
+            init: function () {
+                this.el.addEventListener('click', function (evt) { 
+                    alert("clicked");
+                });
+            }
+        });
+    </script>
     <script>
         function redirectToURL() {
-          window.location.href = "https://example.com";
+            window.location.href = "https://example.com";
         }
-      </script>
+    </script>
 </head>
 
 <body style="margin : 0px; overflow: hidden;">
     <a-scene id="scene" vr-mode-ui="enabled: false"
         arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;">
-  <a-entity clickhandler src="https://upload.wikimedia.org/wikipedia/commons/6/66/%C3%9C%C3%A7kuyular_Ferry_Terminal%2C_March_2021_%289%29.jpg"></a-entity>  
-            <!-- Uckuyular Üçkuyular 38.405675209865336, 27.06935935250486 -->
-            <a-image id="Uckuyular"
-                src="https://upload.wikimedia.org/wikipedia/commons/6/66/%C3%9C%C3%A7kuyular_Ferry_Terminal%2C_March_2021_%289%29.jpg" onclick="window.location.href='https://www.izdeniz.com.tr/'" 
-                look-at="[gps-camera]" scale="5 5 5" onclick="redirectToURL()" 
-                gps-entity-place="latitude: 38.405675209865336; longitude:27.06935935250486;" position="0 2 0" clickhandler
-                ></a-image>
- 
-             <a-text id="Uckuyular-distance" look-at="[gps-camera]" color="white" scale="5 5 5"
-                gps-entity-place="latitude: 38.405675209865336; longitude:27.06935935250486;" position="0 -19 1"
-                ></a-text>
+        <a-marker preset='hiro' cursor='rayOrigin: mouse'></a-marker>
+            <a-entity ><a-obj-model class="collidable" cursor-listener id="animated-marker" src="#crate-obj" position="0 -1.6 0" mtl="#crate-mtl" rotation="-90 0 0" scale="0.004 0.004 0.004" material="" obj-model=""></a-obj-model></a-entity> 
+           //onclick doesn't work
+            <a-entity  material=" src: url(box.png) " class="collidable" cursor- 
+          listener position="0 -1 0"></a-entity> 
+        <a-entity clickhandler
+            src="https://upload.wikimedia.org/wikipedia/commons/6/66/%C3%9C%C3%A7kuyular_Ferry_Terminal%2C_March_2021_%289%29.jpg"></a-entity>
+        <!-- Uckuyular Üçkuyular 38.405675209865336, 27.06935935250486 -->
+        <a-marker preset='hiro' cursor='rayOrigin: mouse'></a-marker>
 
-            <a-camera gps-camera rotation-reader></a-camera>
+        <a-image id="Uckuyular"
+            src="https://upload.wikimedia.org/wikipedia/commons/6/66/%C3%9C%C3%A7kuyular_Ferry_Terminal%2C_March_2021_%289%29.jpg"
+            onclick="window.location.href='https://www.izdeniz.com.tr/'" look-at="[gps-camera]" scale="5 5 5"
+            onclick="redirectToURL()" gps-entity-place="latitude: 38.405675209865336; longitude:27.06935935250486;"
+            position="0 2 0" clickhandler></a-image>
+
+        <a-text id="Uckuyular-distance" look-at="[gps-camera]" color="white" scale="5 5 5"
+            gps-entity-place="latitude: 38.405675209865336; longitude:27.06935935250486;" position="0 -19 1"></a-text>
+
+        <a-camera gps-camera rotation-reader></a-camera>
 
     </a-scene>
     <script>
@@ -77,10 +93,10 @@
         document.addEventListener('DOMContentLoaded', function () {
             var scene = document.querySelector('a-scene');
             document.querySelectorAll('a-image').forEach(function (image) {
-                image.addEventListener('click', function () { 
+                image.addEventListener('click', function () {
                     window.location.href = 'https://www.izdeniz.com.tr/';
                 });
-            });  
+            });
 
             function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
                 var R = 6371;
@@ -122,7 +138,7 @@
                         newScale = Math.max(baseScale, newScale);
 
                         entity.setAttribute('scale', `${newScale} ${newScale} ${newScale}`);
- 
+
                     });
                 }, function (err) {
                     console.warn('ERROR(' + err.code + '): ' + err.message);
