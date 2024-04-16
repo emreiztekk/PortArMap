@@ -27,25 +27,18 @@
         arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;"> -->
     <a-scene cursor='rayOrigin: mouse; fuse: true; fuseTimeout: 0;' raycaster="objects: [gps-projected-entity-place];"
         vr-mode-ui='enabled: false' embedded arjs='sourceType: webcam; debugUIEnabled: false'>
- 
-        <a-entity>
-            <a-image id="Uckuyular"
-                src="https://upload.wikimedia.org/wikipedia/commons/6/66/%C3%9C%C3%A7kuyular_Ferry_Terminal%2C_March_2021_%289%29.jpg"
-                look-at="[gps-camera]" scale="0.5 0.5 0.5" onclick="redirectToURL()"
-                gps-entity-place="latitude: 38.405675209865336; longitude:27.06935935250486;" position="0 2 0">
-            </a-image>
-        </a-entity>
+
 
         <!-- Uckuyular Üçkuyular 38.405675209865336, 27.06935935250486 -->
-        <!-- 
+
         <a-image id="Uckuyular"
             src="https://upload.wikimedia.org/wikipedia/commons/6/66/%C3%9C%C3%A7kuyular_Ferry_Terminal%2C_March_2021_%289%29.jpg"
             onclick="window.location.href='https://www.izdeniz.com.tr/'" look-at="[gps-camera]" scale="5 5 5"
-            onclick="redirectToURL()" gps-entity-place="latitude: 38.405675209865336; longitude:27.06935935250486;"
-            position="0 2 0" clickhandler></a-image>
+            gps-entity-place="latitude: 38.405675209865336; longitude:27.06935935250486;" position="0 2 0"
+            ></a-image>
 
         <a-text id="Uckuyular-distance" look-at="[gps-camera]" color="white" scale="5 5 5"
-            gps-entity-place="latitude: 38.405675209865336; longitude:27.06935935250486;" position="0 -19 1"></a-text> -->
+            gps-entity-place="latitude: 38.405675209865336; longitude:27.06935935250486;" position="0 -19 1"></a-text>
 
         <a-camera gps-camera rotation-reader></a-camera>
 
