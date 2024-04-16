@@ -16,7 +16,7 @@
 <!-- Dynamically add places from Javascript -->
 <script>
     const loadPlaces = function(coords) {
-    const method = 'api';
+    const method = 'apis';
 
     const PLACES = [
         {
@@ -76,8 +76,7 @@ function loadPlaceFromAPIs(position) {
 
 
 window.onload = () => {
-    const scene = document.querySelector('a-scene');
-
+    const scene = document.querySelector('a-scene'); 
     // first get current user location
     return navigator.geolocation.getCurrentPosition(function (position) {
 
