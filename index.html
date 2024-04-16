@@ -3,83 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AR Image Click Detection</title>
-  <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-  <script src="arImage.js"></script>  <script>
-    AFrame.registerComponent('imagehandler', {
+  <title>AR Image Click Redirect</title>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://ar-js-org.github.io/AR.js/aframe/build/aframe-ar.js"></script>   
+  <script>
+    AFRAME.registerComponent('imagehandler', {
       init: function() {
-        arImage.onImageDetected((image) => {  // Assuming detection callback
-          if (image.visible) {
-            this.el.addEventListener('click', this.handleClick.bind(this));
-          }
+        var el = this.el; // Store reference to the element
+        el.addEventListener('click', function() {
+          window.location.href = "https://example.com"; // Redirect to example.com
         });
-      },
-
-      handleClick(ev) {
-        const animatedModel = document.getElementById('animated-model');
-        const scale = animatedModel.getAttribute('scale');
-        const scaleVec = new THREE.Vector3(...scale.split(' '));
-
-        for (const key of Object.keys(scaleVec)) {
-          scaleVec[key] += 1;
-        }
-
-        animatedModel.setAttribute('scale', scaleVec);
       }
     });
   </script>
 </head>
 <body>
-    <a-scene id="scene" vr-mode-ui="enabled: false"
-        arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;"> 
-    <!-- <a-image id="myImage" src="path/to/your/image.jpg" width="2" height="1.5" position="0 1 -2" imagehandler></a-image> -->
+  <a-scene id="scene" vr-mode-ui="enabled: false" arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;"> 
     <a-image id="Goztepe" src="https://upload.wikimedia.org/wikipedia/commons/3/3f/G%C3%B6ztepe_pier.jpg"  
     look-at="[gps-camera]" scale="5 5 5"
     gps-entity-place="latitude: 38.399571991405416; longitude: 27.083436202065336;" position="0 2 0" imagehandler
     ></a-image> 
-
-    <a-entity id="animated-model" geometry="primitive: box" material="color: red" scale="1 1 1"></a-entity>
   </a-scene>
 </body>
 </html>
-<!-- 
-<!DOCTYPE html>
-<html lang="tr">
-
-<head>
-    <meta charset="utf-8">
-    <title>Ports</title>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://ar-js-org.github.io/AR.js/aframe/build/aframe-ar.js"></script>   
- 
-</head>
-
-<body style="margin : 0px; overflow: hidden;">
-    <a-scene id="scene" vr-mode-ui="enabled: false"
-        arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;">  
-            <a-image id="Goztepe" src="https://upload.wikimedia.org/wikipedia/commons/3/3f/G%C3%B6ztepe_pier.jpg"  
-                look-at="[gps-camera]" scale="5 5 5"
-                gps-entity-place="latitude: 38.399571991405416; longitude: 27.083436202065336;" position="0 2 0" clicker
-                ></a-image> 
-  
-            <a-image id="Pasaport"
-                src="https://upload.wikimedia.org/wikipedia/commons/5/55/Kantar_Karakolu%2C_Izmir.jpg" onclick="window.location.href='https://www.izdeniz.com.tr/'" 
-                look-at="[gps-camera]" scale="5 5 5"
-                gps-entity-place="latitude: 38.42892199253736; longitude: 27.13228407441726;" position="0 2 0" clicker
-                ></a-image> 
-            <a-camera gps-camera rotation-reader></a-camera> 
-    </a-scene> 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var scene = document.querySelector('a-scene');  
-            document.querySelectorAll('a-image').forEach(function (image) {
-                image.addEventListener('click', function () { 
-                    console.log("image Clicked");
-                    window.location.href = 'https://www.izdeniz.com.tr/';
-                });
-            });   
-        });
-    </script>
-</body>
-
-</html> -->
