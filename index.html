@@ -24,6 +24,7 @@
       AFRAME.registerComponent('clicker', {
           init: function() {
               this.el.addEventListener('click', e => {
+                alert("clicked");
                   window.location.replace('https://www.google.com.tr/');
               });
           }
