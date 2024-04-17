@@ -1,35 +1,39 @@
 <head>
-    <title>My A-Frame Scene</title>
-    <!-- <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>  -->
-    <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script> 
-  </head>
-   
-  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-  <script>
-    AFRAME.registerComponent('change-color-on-hover', {
+  <title>My A-Frame Scene</title> 
+  <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script> 
+</head>
+ 
+<script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+<script>
+  AFRAME.registerComponent('change-color-on-hover', {
       schema: {
-        color: {default: 'red'}
+          color: {default: 'red'},
+          link: {default: ''}
       },
   
       init: function () {
-        var data = this.data;
-        var el = this.el;  // <a-box>
-        var defaultColor = el.getAttribute('material').color;
+          var data = this.data;
+          var el = this.el;  // <a-box>
+          var defaultColor = el.getAttribute('material').color;
   
-        el.addEventListener('mouseenter', function () {
-          el.setAttribute('color', data.color);
-        });
+          el.addEventListener('click', function () {
+              window.location.href = data.link; // navigate to the specified URL
+          });
   
-        el.addEventListener('mouseleave', function () {
-          el.setAttribute('color', defaultColor);
-        });
+          el.addEventListener('mouseenter', function () {
+              el.setAttribute('color', data.color);
+          });
+  
+          el.addEventListener('mouseleave', function () {
+              el.setAttribute('color', defaultColor);
+          });
       }
-    });
-  </script>
-  <body>
-    <a-scene>
-      <a-box color="#EF2D5E" position="0 1 -4" change-color-on-hover="color: blue"></a-box>
+  });
+</script>
+<body>
+  <a-scene>
+      <a-box color="#EF2D5E" position="0 1 -4" change-color-on-hover="color: blue; link: https://example.com"></a-box>
   
       <a-camera><a-cursor></a-cursor></a-camera>
-    </a-scene>
-  </body>
+  </a-scene>
+</body>
