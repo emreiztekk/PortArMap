@@ -1,25 +1,35 @@
 <head>
     <title>My A-Frame Scene</title>
-    <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script> 
+    <!-- <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>  -->
     <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script> 
   </head>
    
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script>
+    AFRAME.registerComponent('change-color-on-hover', {
+      schema: {
+        color: {default: 'red'}
+      },
+  
+      init: function () {
+        var data = this.data;
+        var el = this.el;  // <a-box>
+        var defaultColor = el.getAttribute('material').color;
+  
+        el.addEventListener('mouseenter', function () {
+          el.setAttribute('color', data.color);
+        });
+  
+        el.addEventListener('mouseleave', function () {
+          el.setAttribute('color', defaultColor);
+        });
+      }
+    });
+  </script>
   <body>
-    <a-scene id="scene" vr-mode-ui="enabled: false"
-        arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;">
-        <a-image id="Uckuyular"
-        src="https://upload.wikimedia.org/wikipedia/commons/6/66/%C3%9C%C3%A7kuyular_Ferry_Terminal%2C_March_2021_%289%29.jpg"
-          look-at="[gps-camera]" scale="5 5 5"
-          event-set__click="material.color: red; scale: 2 2 2"
-             event-set__mouseenter="material.color: blue"
-        gps-entity-place="latitude: 38.405675209865336; longitude:27.06935935250486;" position="0 2 0"
-        ></a-image>
-
-      <a-box color="green"
-             event-set__click="material.color: red; scale: 2 2 2"
-             event-set__mouseenter="material.color: blue"></a-box>
-             <a-camera gps-camera rotation-reader><a-cursor></a-cursor></a-camera>
-
-      <!-- <a-camera><a-cursor></a-cursor></a-camera> -->
+    <a-scene>
+      <a-box color="#EF2D5E" position="0 1 -4" change-color-on-hover="color: blue"></a-box>
+  
+      <a-camera><a-cursor></a-cursor></a-camera>
     </a-scene>
   </body>
