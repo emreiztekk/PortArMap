@@ -4,7 +4,7 @@
         <title>AR.js Click Places Example</title>
         <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
         <script src='https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js'></script>
-        <script>
+        <!-- <script>
         AFRAME.registerComponent('clicker', {
             init: function() {
                 this.el.addEventListener('click', e => {
@@ -13,7 +13,7 @@
                 });
             }
         });
-        </script>
+        </script> -->
     </head>
     <body>
     <a-scene
@@ -31,5 +31,21 @@
             <!-- animation="property: rotation; to: 0 360 0; loop: true; dur: 5000" ></a-image> -->
             <!-- <a-box gps-projected-entity-place='latitude: 38.405675209865336; longitude: 27.06935935250486' color='red' scale='200 200 200' clicker></a-box> -->
     </a-scene>
+    <script>
+      AFRAME.registerComponent('clicker', {
+          init: function() {
+              let clicked = false;
+              this.el.addEventListener('click', e => {
+                  if (!clicked) {
+                      clicked = true;
+                      setTimeout(() => {
+                          clicked = false;
+                      }, 500); // Adjust this timeout as needed
+                      window.location.replace("https://www.google.com.tr/");
+                  }
+              });
+          }
+      });
+    </script>
     </body>
 </html>
