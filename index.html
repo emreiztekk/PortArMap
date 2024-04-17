@@ -9,21 +9,17 @@
       schema: {
           color: {default: 'red'},
           link: {default: ''}
-      },
-  
+      }, 
       init: function () {
           var data = this.data;
           var el = this.el;  // <a-box>
-          var defaultColor = el.getAttribute('material').color;
-  
+          var defaultColor = el.getAttribute('material').color; 
           el.addEventListener('click', function () {
               window.location.href = data.link; // navigate to the specified URL
-          });
-  
+          }); 
           el.addEventListener('mouseenter', function () {
               el.setAttribute('color', data.color);
-          });
-  
+          }); 
           el.addEventListener('mouseleave', function () {
               el.setAttribute('color', defaultColor);
           });
@@ -33,7 +29,6 @@
 <body>
   <a-scene>
       <a-box color="#EF2D5E" position="0 1 -4" change-color-on-hover="color: blue; link: https://example.com"></a-box>
-  
       <a-camera><a-cursor></a-cursor></a-camera>
   </a-scene>
 </body>
