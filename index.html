@@ -1,28 +1,87 @@
 <!DOCTYPE html>
-<html> 
-    <head>
-        <title>AR.js Click Places Example</title>
-        <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-        <script type='text/javascript' src='../../../build/aframe-ar-nft.js'></script>
-        <script>
-        AFRAME.registerComponent('clicker', {
-            init: function() {
-                this.el.addEventListener('click', e => {
-                    alert('Box clicked!');
+<html lang="tr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Ports</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://ar-js-org.github.io/AR.js/aframe/build/aframe-ar.js"></script>    
+</head> 
+<body style="margin : 0px; overflow: hidden;">
+    <a-scene id="scene" vr-mode-ui="enabled: false" arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;"> 
+            <!-- Uckuyular Üçkuyular 38.405675209865336, 27.06935935250486 -->
+            <a-image id="Uckuyular"
+                src="https://upload.wikimedia.org/wikipedia/commons/6/66/%C3%9C%C3%A7kuyular_Ferry_Terminal%2C_March_2021_%289%29.jpg" onclick="window.location.href='https://www.izdeniz.com.tr/'" 
+                look-at="[gps-camera]" scale="5 5 5"
+                gps-entity-place="latitude: 38.405675209865336; longitude:27.06935935250486;" position="0 2 0"
+                animation="property: rotation; to: 0 360 0; loop: true; dur: 5000"></a-image> 
+             <a-text id="Uckuyular-distance" look-at="[gps-camera]" color="white" scale="5 5 5"
+                gps-entity-place="latitude: 38.405675209865336; longitude:27.06935935250486;" position="0 -19 1"
+                animation="property: rotation; to: 0 360 0; loop: true; dur: 5000"></a-text> 
+            <a-camera gps-camera rotation-reader></a-camera> 
+    </a-scene>
+    <script>
+        window.addEventListener('load', function () {
+            var cameraEl = document.querySelector('a-camera');
+            var initialScale = 1;
+            var initialDistance = null;
+
+            function getDistance(touches) {
+                var dx = touches[0].pageX - touches[1].pageX;
+                var dy = touches[0].pageY - touches[1].pageY;
+                return Math.sqrt(dx * dx + dy * dy);
+            }
+
+            function onPinchStart(event) {
+                if (event.touches.length === 2) {
+                    initialDistance = getDistance(event.touches);
+                    document.addEventListener('touchmove', onPinchMove);
+                    document.addEventListener('touchend', onPinchEnd);
+                }
+            }
+
+            function onPinchMove(event) {
+                if (event.touches.length === 2) {
+                    var distance = getDistance(event.touches);
+                    var scale = initialScale * (distance / initialDistance);
+
+                    var newFOV = 80 / scale;
+                    cameraEl.setAttribute('fov', newFOV);
+                }
+            }
+
+            function onPinchEnd(event) {
+                if (event.touches.length < 2) {
+                    document.removeEventListener('touchmove', onPinchMove);
+                    document.removeEventListener('touchend', onPinchEnd);
+
+                    initialDistance = null;
+                }
+            }
+
+            document.addEventListener('touchstart', onPinchStart);
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var scene = document.querySelector('a-scene'); 
+
+            document.querySelectorAll('a-image').forEach(function (image) {
+                image.addEventListener('click', function () {
+                  console.log('image clicked');
+                    // window.location.href = 'https://www.izdeniz.com.tr/';
+                });
+            });
+
+            if (scene) {
+                scene.addEventListener('click', function () {
+                  console.log('scene clicked');
                 });
             }
+ 
+ 
         });
-        </script>
-    </head>
-    <body>
-    <a-scene
-        vr-mode-ui="enabled: false"
-        cursor='rayOrigin: mouse'
-        raycaster='near: 0; far: 50000'
-        arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;'
-        renderer='antialias: true; alpha: true'>
-            <a-camera gps-projected-camera='simulateLatitude: 38.405675209865336; simulateLongitude: 27.06935935250486' rotation-reader></a-camera>
-            <a-box gps-projected-entity-place='latitude: 38.405675209865336; longitude: 27.06935935250486' color='red' scale='200 200 200' clicker></a-box>
-    </a-scene>
-    </body>
+    </script>
+</body>
+
 </html>
